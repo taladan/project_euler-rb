@@ -1,5 +1,5 @@
 # lib/largest_prime_factor.rb
-
+require "pry-byebug"
 # The prime factors of 13195 are 5, 7, 13, and 29.
 # What is the largets prime factor of the number 600851475143 ?
 
@@ -30,7 +30,6 @@ def largest_prime_fact_iterative(num)
   x = num
   factors = []
   Prime.each do |factor|
-    # binding.pry
     break if factor > x
     remainder = 0
     while remainder == 0
@@ -56,7 +55,12 @@ def largest_prime_fact_recursive(num, dividend=num, factor=1, factors=[])
       end
     end
   end
-  factor.odd? ? factor += 1 : factor += 2
+  if factor.even?
+    factor += 1
+  else
+    factor += 2
+  end
+    # binding.pry
   largest_prime_fact_recursive(num,dividend,factor,factors)
 end
 
