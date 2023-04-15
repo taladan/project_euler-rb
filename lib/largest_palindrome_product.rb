@@ -8,9 +8,9 @@ require "pry-byebug"
 # Find the largest palindrome made from the product of 
 # two 3-digit numbers.
 
-def largest_palindrome_product_iterative()
+def largest_palindrome_product_iterative(start)
   output = []
-  array = 999.downto(100).to_a
+  array = start.downto(100).to_a
   products = array.product(array).map {|a, b| a * b}
   products.each do |product|
     output << product if product.to_s == product.digits*''
@@ -18,10 +18,17 @@ def largest_palindrome_product_iterative()
   output.max
 end
 
-def largest_palindrome_product_recursive()
-
+def largest_palindrome_product_recursive(start, steps=start, products = [])
+  return products.max if start <= 100
+  while steps >= 100
+    product = start * steps
+    products << product if product.to_s == product.digits*''  
+    steps -= 1
+  end
+  largest_palindrome_product_recursive(start-1, start, products)
 end
 
 target = 3
 
-puts largest_palindrome_product_iterative()
+puts largest_palindrome_product_iterative(999)
+puts largest_palindrome_product_recursive(999)
