@@ -56,7 +56,7 @@ def largest_prime_fact_recursive(num, dividend=num, factor=1, factors=[])
       end
     end
   end
-  factor += 1
+  factor.odd? ? factor += 1 : factor += 2
   largest_prime_fact_recursive(num,dividend,factor,factors)
 end
 
