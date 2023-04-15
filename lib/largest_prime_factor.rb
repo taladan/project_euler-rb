@@ -54,7 +54,7 @@ def largest_prime_fact_recursive(num, dividend=num, factor=1, factors=[])
       end
     end
   end
-  if factor.even?
+  if factor <= 2
     factor += 1
   else
     factor += 2
